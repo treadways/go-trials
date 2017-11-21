@@ -10,7 +10,7 @@ func main() {
 	var match int
 	playerPoints = 0
 	comPoints = 0
-	match = 1
+	match = 0
 
 	for repeat == "yes" {
 		fmt.Println(" ")
@@ -21,7 +21,8 @@ func main() {
 		fmt.Println(" ")
 		fmt.Println("You will play the computer for the best out of three games.")
 
-		for match := 1; playerPoints == 2 || comPoints == 2; match++ {
+		for playerPoints < 2 || comPoints < 2 {
+			match = match + 1
 			fmt.Println("Match", match)
 			fmt.Println("Type your choosen move (rock, paper, or scissors): ")
 			fmt.Scanf("%s", &playerMove)
@@ -34,7 +35,7 @@ func main() {
 			playerPoints = playerPoints + outcome
 			comPoints = comPoints + 1 - outcome
 		}
-	
+
 		fmt.Println("Would you like to play again? (yes/no)")
 		fmt.Scanf("%s", &repeat)
 		fmt.Println("==============================================================================")
