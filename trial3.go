@@ -5,6 +5,7 @@ import "math/rand"
 
 func main() {
 	var repeat string = "yes"
+	var newMatch = "yes"
 	var playerMove, comMove string
 	var outcome, playerPoints, comPoints int
 	var match int
@@ -20,8 +21,9 @@ func main() {
 
 		fmt.Println(" ")
 		fmt.Println("You will play the computer for the best out of three games.")
+		fmt.Println(" ")
 
-		for playerPoints < 2 || comPoints < 2 {
+		for newMatch == "yes" {
 			match = match + 1
 			fmt.Println("Match", match)
 			fmt.Println("Type your choosen move (rock, paper, or scissors): ")
@@ -32,8 +34,15 @@ func main() {
 			fmt.Println(" ")
 
 			outcome = checkWin(playerMove, comMove)
+			fmt.Println(outcome)
 			playerPoints = playerPoints + outcome
 			comPoints = comPoints + 1 - outcome
+			fmt.Println("Your Wins: ", playerPoints)
+			fmt.Println("Computer Wins: ", comPoints)
+			fmt.Println(" ")
+			if playerPoints == 2 || comPoints == 2 {
+				newMatch = "no"
+			}
 		}
 
 		fmt.Println("Would you like to play again? (yes/no)")
