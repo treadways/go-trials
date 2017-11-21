@@ -10,9 +10,6 @@ func main() {
 	var playerMove, comMove string
 	var outcome, playerPoints, comPoints float64
 	var match int
-	playerPoints = 0
-	comPoints = 0
-	match = 0
 
 
 	/*
@@ -21,16 +18,21 @@ func main() {
 	fmt.Println(output)
 	*/
 
+	fmt.Println(" ")
+	fmt.Println("==============================================================================")
+	fmt.Println("Welcome to Rock, Paper, Scissors by Shane Treadway.")
+	fmt.Println("--")
+
+	fmt.Println(" ")
+	fmt.Println("You will play the computer for the best out of three games.")
+	fmt.Println(" ")
 
 	for repeat == "yes" {
-		fmt.Println(" ")
-		fmt.Println("==============================================================================")
-		fmt.Println("Welcome to Rock, Paper, Scissors by Shane Treadway.")
-		fmt.Println("--")
 
-		fmt.Println(" ")
-		fmt.Println("You will play the computer for the best out of three games.")
-		fmt.Println(" ")
+		playerPoints = 0
+		comPoints = 0
+		match = 0
+		newMatch = "yes"
 
 		for newMatch == "yes" {
 			match = match + 1
@@ -46,18 +48,18 @@ func main() {
 
 			if outcome == 1 {
 				fmt.Println("Win")
-			}
-			if outcome == 0.5 {
-				outcome = 0
-				fmt.Println("Tie")
+				playerPoints = playerPoints + 1
 			}
 			if outcome == 0 {
 				fmt.Println("Loss")
+				comPoints = comPoints + 1
+			}
+			if outcome == 0.5 {
+				fmt.Println("Tie")
 			}
 
+
 			fmt.Println(" ")
-			playerPoints = playerPoints + outcome
-			comPoints = comPoints + 1 - outcome
 			fmt.Println("Your Wins: ", playerPoints)
 			fmt.Println("Computer Wins: ", comPoints)
 			fmt.Println(" ")
