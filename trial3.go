@@ -4,14 +4,23 @@ import "fmt"
 import "math/rand"
 
 func main() {
+
 	var repeat string = "yes"
 	var newMatch = "yes"
 	var playerMove, comMove string
-	var outcome, playerPoints, comPoints int
+	var outcome, playerPoints, comPoints float64
 	var match int
 	playerPoints = 0
 	comPoints = 0
 	match = 0
+
+
+	/*
+	var output float64
+	output = checkWin("scissors", "paper")
+	fmt.Println(output)
+	*/
+
 
 	for repeat == "yes" {
 		fmt.Println(" ")
@@ -34,13 +43,32 @@ func main() {
 			fmt.Println(" ")
 
 			outcome = checkWin(playerMove, comMove)
-			fmt.Println(outcome)
+
+			if outcome == 1 {
+				fmt.Println("Win")
+			}
+			if outcome == 0.5 {
+				outcome = 0
+				fmt.Println("Tie")
+			}
+			if outcome == 0 {
+				fmt.Println("Loss")
+			}
+
+			fmt.Println(" ")
 			playerPoints = playerPoints + outcome
 			comPoints = comPoints + 1 - outcome
 			fmt.Println("Your Wins: ", playerPoints)
 			fmt.Println("Computer Wins: ", comPoints)
 			fmt.Println(" ")
-			if playerPoints == 2 || comPoints == 2 {
+
+			if playerPoints == 2 {
+				fmt.Println("Congradulations! You won in ", match, " matches.")
+				newMatch = "no"
+			}
+
+			if comPoints == 2 {
+				fmt.Println("Sorry, you lost in ", match, " matches.")
 				newMatch = "no"
 			}
 		}
@@ -50,6 +78,7 @@ func main() {
 		fmt.Println("==============================================================================")
 		fmt.Println(" ")
 	}
+
 }
 
 func RockPaperScissorsGenerator() string {
@@ -57,28 +86,28 @@ func RockPaperScissorsGenerator() string {
 	var move string
 
 	if randomNumber == 0 {
-		move = "Rock"
+		move = "rock"
 	}
 	if randomNumber == 1 {
-		move = "Paper"
+		move = "paper"
 	}
 	if randomNumber == 2 {
-		move = "Scissors"
+		move = "scissors"
 	}
 
 	return move
 }
 
-func checkWin(move1 string, move2 string) int {
-	var result int
+func checkWin(move1 string, move2 string) float64 {
+	var result float64
 	if move1 == "rock" {
 		if move2 == "rock" {
-			result = 0
+			result = 0.5
 		}
 		if move2 == "paper" {
 			result = 0
 		}
-		if move2 == "scissor" {
+		if move2 == "scissors" {
 			result = 1
 		}
 	}
@@ -88,7 +117,7 @@ func checkWin(move1 string, move2 string) int {
 			result = 1
 		}
 		if move2 == "paper" {
-			result = 0
+			result = 0.5
 		}
 		if move2 == "scissors" {
 			result = 0
@@ -102,7 +131,7 @@ func checkWin(move1 string, move2 string) int {
 			result = 1
 		}
 		if move2 == "scissors" {
-			result = 0
+			result = 0.5
 		}
 	}
 
